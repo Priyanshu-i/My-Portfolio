@@ -1,119 +1,137 @@
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
+"use client";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Github, Folder } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+
+const projects = [
+  {
+    title: "AI Chat Application",
+    description: "A real-time chat application powered by OpenAI GPT-4, featuring context-aware conversations and markdown support.",
+    image: "/ai-chat-interface-with-modern-ui.jpg",
+    tags: ["Next.js", "OpenAI", "Tailwind"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "E-Commerce Platform",
+    description: "Full-stack e-commerce solution with payment integration and admin dashboard built for scalability.",
+    image: "/modern-ecommerce-dashboard.png",
+    tags: ["React", "PostgreSQL", "Stripe"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "Task Management System",
+    description: "Collaborative project management tool with real-time updates and team collaboration features.",
+    image: "/task-management-kanban.png",
+    tags: ["Next.js", "MongoDB", "Socket.io"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "ML Image Classifier",
+    description: "Machine learning application that classifies images using custom-trained models with real-time predictions.",
+    image: "/machine-learning-image-classification-app.jpg",
+    tags: ["Python", "TensorFlow", "React"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "Weather Dashboard",
+    description: "Beautiful weather application with location-based forecasts and interactive weather maps.",
+    image: "/preview/project4.png",
+    tags: ["React", "API", "Chart.js"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "Portfolio CMS",
+    description: "Content management system for developers featuring markdown support and SEO optimization.",
+    image: "/portfolio-cms-admin-interface.jpg",
+    tags: ["Next.js", "Sanity", "Vercel"],
+    github: "#",
+    demo: "#",
+  },
+];
 
 export function ProjectsSection() {
-  const projects = [
-    {
-      title: "AI Chat Application",
-      description:
-        "A real-time chat application powered by OpenAI GPT-4, featuring context-aware conversations, code highlighting, and markdown support.",
-      image: "/ai-chat-interface-with-modern-ui.jpg",
-      tags: ["Next.js", "OpenAI", "TypeScript", "Tailwind"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "E-Commerce Platform",
-      description:
-        "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard. Built for scalability and performance.",
-      image: "/modern-ecommerce-dashboard.png",
-      tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Task Management System",
-      description:
-        "Collaborative project management tool with real-time updates, team collaboration features, and advanced analytics.",
-      image: "/task-management-kanban.png",
-      tags: ["Next.js", "MongoDB", "Socket.io", "Redux"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "ML Image Classifier",
-      description:
-        "Machine learning application that classifies images using custom-trained models. Features drag-and-drop upload and real-time predictions.",
-      image: "/machine-learning-image-classification-app.jpg",
-      tags: ["Python", "TensorFlow", "Flask", "React"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Weather Dashboard",
-      description:
-        "Beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics.",
-      image: "/preview/project4.png",
-      tags: ["React", "OpenWeather API", "Chart.js", "Leaflet"],
-      github: "#",
-      demo: "#",
-    },
-    {
-      title: "Portfolio CMS",
-      description:
-        "Content management system for developers to showcase their work. Features markdown support, SEO optimization, and analytics.",
-      image: "/portfolio-cms-admin-interface.jpg",
-      tags: ["Next.js", "Sanity", "TypeScript", "Vercel"],
-      github: "#",
-      demo: "#",
-    },
-  ]
-
   return (
-    <section id="projects" className="py-20 sm:py-32">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-              A selection of my recent work showcasing full-stack and AI development
+    <section id="projects" className="py-24 bg-transparent">
+      <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
+        
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <div className="flex items-center gap-2 mb-4">
+              <Folder className="text-blue-600 w-5 h-5" />
+              <span className="text-blue-600 font-mono text-sm font-bold uppercase tracking-widest">Portfolio</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">
+              Featured Projects
+            </h2>
+            <p className="text-lg text-slate-500 leading-relaxed">
+              A collection of systems I've built, ranging from AI-powered tools to robust full-stack applications.
             </p>
           </div>
+          <Button variant="outline" className="rounded-xl border-slate-200 hover:bg-slate-50 hidden md:flex">
+            View All GitHub
+          </Button>
+        </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <Card
-                key={project.title}
-                className="overflow-hidden bg-card border-border hover:border-primary/50 transition-all group"
-              >
-                <div className="relative overflow-hidden aspect-video">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative h-full flex flex-col"
+            >
+              {/* Card Container */}
+              <div className="relative flex-1 overflow-hidden rounded-3xl border border-white/40 bg-white/20 backdrop-blur-md shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10 flex flex-col">
+                
+                {/* Image Section with Overlay */}
+                <div className="relative aspect-video overflow-hidden">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  {/* Hover Overlay Buttons */}
+                  <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 backdrop-blur-[2px]">
+                    <a href={project.github} className="p-3 bg-white rounded-full text-slate-900 hover:bg-blue-600 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300">
+                      <Github size={20} />
+                    </a>
+                    <a href={project.demo} className="p-3 bg-white rounded-full text-slate-900 hover:bg-blue-600 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75">
+                      <ExternalLink size={20} />
+                    </a>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.description}</p>
+
+                {/* Content Section */}
+                <div className="p-6 flex flex-col flex-1">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full">
+                      <span key={tag} className="text-[10px] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-700 px-2 py-1 rounded-md">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-3">
-                    <Button size="sm" variant="outline" className="flex-1 bg-transparent" asChild>
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github size={16} className="mr-2" />
-                        Code
-                      </a>
-                    </Button>
-                    <Button size="sm" className="flex-1 bg-primary text-primary-foreground" asChild>
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={16} className="mr-2" />
-                        Demo
-                      </a>
-                    </Button>
-                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed line-clamp-3">
+                    {project.description}
+                  </p>
                 </div>
-              </Card>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

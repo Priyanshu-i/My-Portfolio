@@ -2,13 +2,8 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Briefcase, Code, Trophy, Calendar } from 'lucide-react';
-import { Card, CardContent } from './ui/card';
+import { GraduationCap, Code, Briefcase, Trophy, Calendar, MapPin } from 'lucide-react';
 import { Badge } from './ui/badge';
-import Image from 'next/image'; // Import next/image for better performance and sizing
-
-// Helper function to capitalize the first letter for taglines
-const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 const ExperienceSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,274 +12,159 @@ const ExperienceSection = () => {
     offset: ['start end', 'end start'],
   });
 
+  // Smooth progress bar height
+  const height = useTransform(scrollYProgress, [0, 0.9], ['0%', '100%']);
+
   const experiences = [
     {
       type: 'education',
       icon: GraduationCap,
       title: 'B-Tech in AI-ML',
       organization: 'NIT Kurukshetra',
-      period: 'Aug 2024 - Present',
-      tagline: 'University Life', // New: Short Tagline
-      description:
-        'Focused on software engineering fundamentals, including algorithms, data structures, DBMS, and operating systems—while actively exploring the concepts and real-world applications of AI and machine learning.',
-      achievements: ['CGPA: 9.20/10.00', 'Deans List'],
-      image: 'image.png',
-      color: 'from-blue-400 to-blue-600',
+      period: '2024 - Present',
+      description: 'Major in AI & Machine Learning. Focusing on DSA, Operating Systems, and Neural Networks.',
+      tags: ['CGPA: 9.2', 'Deans List'],
+      color: 'bg-blue-500',
+      textColor: 'text-blue-500',
     },
     {
       type: 'project',
       icon: Code,
       title: 'E-Commerce Platform',
       organization: 'Personal Project',
-      period: '2022',
-      tagline: 'Digital Storefront', // New: Short Tagline
-      description:
-        'Built a full-stack e-commerce platform with React, Node.js, and MongoDB. Implemented payment integration, user authentication, and admin dashboard.',
-      achievements: ['1000+ Users', 'Payment Integration', 'Real-time Updates'],
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
-      color: 'from-purple-400 to-purple-600',
+      period: 'Late 2022',
+      description: 'Full-stack platform built with MERN stack. Features secure payments and real-time inventory.',
+      tags: ['React', 'Node.js', 'Stripe'],
+      color: 'bg-purple-500',
+      textColor: 'text-purple-500',
     },
-    // {
-    //   type: 'work',
-    //   icon: Briefcase,
-    //   title: 'Frontend Developer',
-    //   organization: 'Tech Company Inc.',
-    //   period: '2022 - 2023',
-    //   tagline: 'Entry-Level Role', // New: Short Tagline
-    //   description:
-    //     'Developed and maintained responsive web applications using React and TypeScript. Collaborated with cross-functional teams to deliver high-quality products.',
-    //   achievements: ['Led 3 major projects', 'Improved performance 40%', 'Mentored juniors'],
-    //   image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600',
-    //   color: 'from-green-400 to-green-600',
-    // },
-    // {
-    //   type: 'achievement',
-    //   icon: Trophy,
-    //   title: 'Hackathon Winner',
-    //   organization: 'National Tech Hackathon',
-    //   period: '2023',
-    //   tagline: 'Major Triumph', // New: Short Tagline
-    //   description:
-    //     'Won first place in a 48-hour hackathon by building an innovative solution for sustainable agriculture using IoT and data analytics.',
-    //   achievements: ['1st Place', '$10k Prize', 'Media Coverage'],
-    //   image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=600',
-    //   color: 'from-yellow-400 to-yellow-600',
-    // },
+    // Example Work Item
+    {
+      type: 'work',
+      icon: Briefcase,
+      title: 'Frontend Intern',
+      organization: 'Startup Inc.',
+      period: 'Summer 2023',
+      description: 'Optimized landing page performance by 40% and implemented new design system components.',
+      tags: ['Next.js', 'Tailwind', 'Perf'],
+      color: 'bg-emerald-500',
+      textColor: 'text-emerald-500',
+    },
   ];
 
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
-
-  const getIconColor = (type: string) => {
-    switch (type) {
-      case 'education': return 'text-blue-600';
-      case 'work': return 'text-green-600';
-      case 'project': return 'text-purple-600';
-      case 'achievement': return 'text-yellow-600';
-      default: return 'text-gray-600';
-    }
-  };
-
-  const getIconBg = (type: string) => {
-    switch (type) {
-      case 'education': return 'bg-blue-50';
-      case 'work': return 'bg-green-50';
-      case 'project': return 'bg-purple-50';
-      case 'achievement': return 'bg-yellow-50';
-      default: return 'bg-gray-50';
-    }
-  };
-
   return (
-    <section className="relative py-24 bg-white overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,0,0,0.015)_0%,transparent_50%)]" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <Badge
-            variant="secondary"
-            className="mb-4 px-4 py-1.5 text-sm font-medium bg-black/5 text-black"
-          >
-            My Journey
-          </Badge>
-          <h2 className="text-4xl sm:text-5xl font-bold text-black mb-4">
-            Learning & Experience Timeline
+    <section className="py-20 bg-gray-50/50 overflow-hidden" ref={containerRef}>
+      <div className="container mx-auto px-4 max-w-4xl">
+        
+        {/* Compact Header */}
+        <div className="text-center mb-16 space-y-2">
+          <Badge variant="outline" className="mb-2 bg-white px-3 py-1">My Path</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+            Experience & <span className="text-gray-400">Education</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From education to professional milestones, here's my journey in the world of technology
-            and innovation.
-          </p>
-        </motion.div>
+        </div>
 
         {/* Timeline Container */}
-        <div ref={containerRef} className="relative max-w-6xl mx-auto">
-          {/* Main Timeline Line (fixed at the center) */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-black/10 -translate-x-1/2 hidden md:block">
-            <motion.div
-              style={{ height: lineHeight }}
-              className="w-full bg-black origin-top"
-            />
-          </div>
+        <div className="relative">
+          
+          {/* The Central Line (Gray Background) */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2" />
+          
+          {/* The Animated Line (Colored Progress) */}
+          <motion.div 
+            style={{ height }}
+            className="absolute left-4 md:left-1/2 top-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500 -translate-x-1/2 origin-top"
+          />
 
-          <div className="space-y-16">
-            {experiences.map((experience, index) => {
-              const Icon = experience.icon;
+          <div className="space-y-12">
+            {experiences.map((item, index) => {
+              const Icon = item.icon;
+              const isEven = index % 2 === 0;
 
               return (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-100px' }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  // Force a single row layout with content split 1/3 (left) and 2/3 (right)
-                  className="relative flex flex-col md:flex-row items-start justify-between"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${
+                    isEven ? 'md:flex-row-reverse' : ''
+                  }`}
                 >
-                  {/* Left Side: Image and Tagline (1/3 width on md+) */}
-                  {/*<div className="md:w-[calc(50%-48px)] flex-shrink-0 md:pl-16">*/}
-                  <div className="md:w-[calc(50%-48px)] flex-shrink-0 md:pl-16">
-                    
-                    {/* Tagline */}
-                    <div className="order-2 md:order-1">
-                      <h4 className="text-xl font-semibold text-gray-900">{capitalize(experience.type)}</h4>
-                      <p className="text-sm text-gray-500 font-medium">{experience.tagline}</p>
-                    </div>
-
-                    {/* Image Container (slightly smaller than RHS content) */}
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                      className="order-1 md:order-2 w-80 h-80 sm:w-80 sm:h-80 md:w-96 md:h-64 rounded-2xl shadow-xl border-4 border-white ring-2 ring-black/10 overflow-hidden relative"
-                    >
-                      <img
-                        src={experience.image}
-                        alt={experience.title}
-                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
-                      />
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-tr ${experience.color} opacity-20 hover:opacity-10 transition-opacity duration-300`}
-                      ></div>
-                    </motion.div>
-                  </div>
                   
-                  {/* Timeline Bullet Point (Always in the middle) */}
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                    className="absolute left-1/2 w-10 h-10 -translate-x-1/2 top-10 md:top-20 bg-white border-4 border-black rounded-full flex items-center justify-center shadow-xl z-10 hidden md:flex"
-                  >
-                    <Icon className={`w-5 h-5 ${getIconColor(experience.type)}`} />
-                  </motion.div>
+                  {/* Timeline Dot (Center Anchor) */}
+                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 z-10 flex items-center justify-center">
+                    <div className="relative w-8 h-8 rounded-full bg-white border-2 border-gray-100 shadow-sm flex items-center justify-center">
+                      <motion.div 
+                        whileInView={{ scale: [0, 1.2, 1] }}
+                        className={`w-3 h-3 rounded-full ${item.color}`} 
+                      />
+                    </div>
+                  </div>
 
-                  {/* Right Side: Timeline Content (2/3 width on md+) */}
-                  <div className="md:w-[calc(50%-48px)] flex-shrink-0 md:pl-16">
-                    <motion.div
-                      whileHover={{ y: -2 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-full"
-                    >
-                      <Card className="border-2 border-black/5 transition-all duration-300 shadow-lg hover:shadow-2xl bg-white overflow-hidden">
-                        <CardContent className="p-6">
-                          <div className="flex items-start justify-between mb-3">
-                            <div className="flex-1">
-                              {/* Title */}
-                              <h3 className="text-2xl font-bold text-black mb-1">
-                                {experience.title}
-                              </h3>
-                              {/* Organization */}
-                              <p className="text-gray-600 font-medium mb-2">
-                                {experience.organization}
-                              </p>
-                              {/* Period/Date */}
-                              <div className="flex items-center gap-1.5 text-gray-500 text-sm font-medium">
-                                <Calendar className="w-4 h-4" />
-                                <span>{experience.period}</span>
-                              </div>
+                  {/* Content Card */}
+                  <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-12">
+                     <div className={`flex flex-col ${isEven ? 'md:items-start' : 'md:items-end'}`}>
+                        
+                        {/* Date Label (Floating above/near card) */}
+                        <span className="text-xs font-semibold text-gray-400 mb-2 flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {item.period}
+                        </span>
+
+                        {/* Card */}
+                        <motion.div 
+                          whileHover={{ y: -5 }}
+                          className={`bg-white p-5 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 w-full max-w-sm relative group overflow-hidden ${
+                            isEven ? 'text-left' : 'text-left md:text-right'
+                          }`}
+                        >
+                          {/* Hover Gradient Effect */}
+                          <div className={`absolute top-0 left-0 w-1 h-full ${item.color} opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300`} />
+                          
+                          <div className={`flex items-center gap-3 mb-3 ${isEven ? 'flex-row' : 'flex-row md:flex-row-reverse'}`}>
+                            <div className={`p-2 rounded-lg bg-gray-50 text-gray-700`}>
+                              <Icon className="w-4 h-4" />
                             </div>
-                            <div className={`p-2 rounded-lg flex-shrink-0 ${getIconBg(experience.type)} hidden sm:block`}>
-                              <Icon className={`w-5 h-5 ${getIconColor(experience.type)}`} />
+                            <div>
+                                <h3 className="font-bold text-gray-900 text-lg leading-tight">{item.title}</h3>
+                                <p className="text-sm text-gray-500 font-medium">{item.organization}</p>
                             </div>
                           </div>
 
-                          {/* Description */}
-                          <p className="text-gray-700 mb-4 leading-relaxed">
-                            {experience.description}
+                          <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                            {item.description}
                           </p>
 
-                          {/* Achievements/Badges */}
-                          <div className="flex flex-wrap gap-2 pt-2 border-t border-black/5">
-                            {experience.achievements.map((achievement, i) => (
-                              <motion.div
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 + 0.3 }}
+                          <div className={`flex flex-wrap gap-2 ${isEven ? 'justify-start' : 'justify-start md:justify-end'}`}>
+                            {item.tags.map((tag, tIndex) => (
+                              <span 
+                                key={tIndex} 
+                                className="px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase rounded-full bg-gray-50 text-gray-600 border border-gray-100"
                               >
-                                <Badge
-                                  variant="outline"
-                                  className="px-3 py-1 text-xs border-black/10 text-gray-700 bg-gray-50 hover:bg-gray-100"
-                                >
-                                  {achievement}
-                                </Badge>
-                              </motion.div>
+                                {tag}
+                              </span>
                             ))}
                           </div>
-                        </CardContent>
-
-                        {/* Animated Bottom Bar */}
-                        <motion.div
-                          className={`h-1 bg-gradient-to-r ${experience.color}`}
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
-                        />
-                      </Card>
-                    </motion.div>
+                        </motion.div>
+                     </div>
                   </div>
+
+                  {/* Empty side for layout balance on Desktop */}
+                  <div className="hidden md:block w-1/2" />
+                  
                 </motion.div>
               );
             })}
           </div>
-
-          {/* End of Timeline Marker */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative mt-12 flex justify-center"
-          >
-            <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white font-bold text-lg shadow-2xl">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              >
-                <Briefcase className="w-10 h-10" />
-              </motion.div>
-            </div>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="text-center mt-8 text-gray-600 font-medium"
-          >
-            The journey continues...
-          </motion.p>
         </div>
+        
+        {/* Footer Icon */}
+        <div className="mt-16 flex justify-center">
+            <div className="w-2 h-16 bg-gradient-to-b from-gray-200 to-transparent rounded-full opacity-50"></div>
+        </div>
+
       </div>
     </section>
   );
