@@ -5,22 +5,25 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Suspense } from "react"
-import ParticlesBg from "@/components/particles-bg" // Adjust path as needed
+import ParticlesBg from "@/components/particles-bg" 
 
 export const metadata: Metadata = {
   title: "Priyanshu Singh Portfolio",
   description:
     "Let’s create something meaningful together. Reach out for collaborations, projects, or discussions about AI and research.",
+  icons: {
+    icon: "/favicon.ico",
+  },
   keywords: ["Portfolio", "Contact", "Engineering", "Research", "AI", "Collaboration"],
   authors: [{ name: "Priyanshu Singh" }],
   openGraph: {
     title: "Contact | Priyanshu Singh Portfolio",
     description: "Reach out for collaborations, projects, or discussions about engineering, research, and AI.",
-    url: "https://priyanshu-singh-dev.com/contact",
+    url: "https://priyanshu-singh-dev.netlify.app/contact",
     siteName: "Priyanshu Singh Portfolio",
     images: [
       {
-        url: "https://priyanshu-singh-dev.com/MyPic.png",
+        url: "https://priyanshu-singh-dev.netlify.app/MyPic.png",
         width: 1200,
         height: 630,
         alt: "Portfolio Contact Preview",
