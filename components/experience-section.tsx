@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Code, Briefcase, Trophy, Calendar, MapPin } from 'lucide-react';
+import { GraduationCap, Code, Calendar } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 const ExperienceSection = () => {
@@ -12,7 +12,6 @@ const ExperienceSection = () => {
     offset: ['start end', 'end start'],
   });
 
-  // Smooth progress bar height
   const height = useTransform(scrollYProgress, [0, 0.9], ['0%', '100%']);
 
   const experiences = [
@@ -25,58 +24,57 @@ const ExperienceSection = () => {
       description: 'Major in AI & Machine Learning. Focusing on DSA, Operating Systems, and Neural Networks.',
       tags: ['CGPA: 9.2', 'Deans List'],
       color: 'bg-blue-500',
-      textColor: 'text-blue-500',
     },
     {
       type: 'project',
       icon: Code,
-      title: 'E-Commerce Platform',
+      title: 'LearnConnect',
       organization: 'Personal Project',
-      period: 'Late 2022',
-      description: 'Full-stack platform built with MERN stack. Features secure payments and real-time inventory.',
-      tags: ['React', 'Node.js', 'Stripe'],
+      period: 'Late 2024',
+      description: 'Full-stack platform built with Next.js. Features multimedia DB and real-time chats, messages with secure groups.',
+      tags: ['Next.js', 'Node.js', 'Firebase'],
       color: 'bg-purple-500',
-      textColor: 'text-purple-500',
     },
-    // Example Work Item
     {
-      type: 'work',
-      icon: Briefcase,
-      title: 'Frontend Intern',
-      organization: 'Startup Inc.',
-      period: 'Summer 2023',
-      description: 'Optimized landing page performance by 40% and implemented new design system components.',
-      tags: ['Next.js', 'Tailwind', 'Perf'],
+      type: 'project',
+      icon: Code,
+      title: 'Devripple',
+      organization: 'Personal Project | OCD',
+      period: 'Summer 2025',
+      description: 'Gained strong community adoption and was later acquired and rebranded by the OpenCodeDeveloper Society, enabling wider open-source usage and impact.',
+      tags: ['Next.js', 'Node.js', 'Firebase'],
       color: 'bg-emerald-500',
-      textColor: 'text-emerald-500',
     },
   ];
 
   return (
-    <section className="py-20 bg-gray-50/50 overflow-hidden" ref={containerRef}>
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section id="experience" className="py-24 bg-transparent overflow-hidden" ref={containerRef}>
+      <div className="container mx-auto px-6 max-w-6xl">
         
-        {/* Compact Header */}
-        <div className="text-center mb-16 space-y-2">
-          <Badge variant="outline" className="mb-2 bg-white px-3 py-1">My Path</Badge>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-            Experience & <span className="text-gray-400">Education</span>
+        {/* Header - Aligned with the width of the website */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-[2px] bg-blue-600" />
+            <span className="text-blue-600 font-mono text-sm font-bold tracking-widest uppercase text-left">My Path</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-left">
+            Experience & <span className="text-slate-400 font-normal italic">Education</span>
           </h2>
         </div>
 
         {/* Timeline Container */}
         <div className="relative">
           
-          {/* The Central Line (Gray Background) */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2" />
+          {/* The Central Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-slate-200 -translate-x-1/2" />
           
-          {/* The Animated Line (Colored Progress) */}
+          {/* The Animated Line */}
           <motion.div 
             style={{ height }}
-            className="absolute left-4 md:left-1/2 top-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500 -translate-x-1/2 origin-top"
+            className="absolute left-4 md:left-1/2 top-0 w-[1px] bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500 -translate-x-1/2 origin-top z-10"
           />
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             {experiences.map((item, index) => {
               const Icon = item.icon;
               const isEven = index % 2 === 0;
@@ -84,22 +82,19 @@ const ExperienceSection = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                   className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
                 >
                   
-                  {/* Timeline Dot (Center Anchor) */}
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 z-10 flex items-center justify-center">
-                    <div className="relative w-8 h-8 rounded-full bg-white border-2 border-gray-100 shadow-sm flex items-center justify-center">
-                      <motion.div 
-                        whileInView={{ scale: [0, 1.2, 1] }}
-                        className={`w-3 h-3 rounded-full ${item.color}`} 
-                      />
+                  {/* Timeline Dot */}
+                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 z-20 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-center">
+                      <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
                     </div>
                   </div>
 
@@ -107,42 +102,34 @@ const ExperienceSection = () => {
                   <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-12">
                      <div className={`flex flex-col ${isEven ? 'md:items-start' : 'md:items-end'}`}>
                         
-                        {/* Date Label (Floating above/near card) */}
-                        <span className="text-xs font-semibold text-gray-400 mb-2 flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
+                        <div className="flex items-center gap-2 text-slate-400 font-mono text-xs mb-3 uppercase tracking-wider">
+                          <Calendar size={14} />
                           {item.period}
-                        </span>
+                        </div>
 
-                        {/* Card */}
                         <motion.div 
                           whileHover={{ y: -5 }}
-                          className={`bg-white p-5 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 w-full max-w-sm relative group overflow-hidden ${
-                            isEven ? 'text-left' : 'text-left md:text-right'
-                          }`}
+                          className="w-full max-w-md p-6 rounded-3xl border border-white/40 bg-white/20 backdrop-blur-md shadow-lg group relative overflow-hidden"
                         >
-                          {/* Hover Gradient Effect */}
-                          <div className={`absolute top-0 left-0 w-1 h-full ${item.color} opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300`} />
+                          <div className={`absolute left-0 top-0 bottom-0 w-1 ${item.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
                           
-                          <div className={`flex items-center gap-3 mb-3 ${isEven ? 'flex-row' : 'flex-row md:flex-row-reverse'}`}>
-                            <div className={`p-2 rounded-lg bg-gray-50 text-gray-700`}>
-                              <Icon className="w-4 h-4" />
+                          <div className={`flex items-start gap-4 mb-4 ${isEven ? 'flex-row' : 'flex-row md:flex-row-reverse md:text-right'}`}>
+                            <div className="p-3 bg-white/50 rounded-2xl shadow-inner text-slate-700">
+                              <Icon size={20} />
                             </div>
                             <div>
-                                <h3 className="font-bold text-gray-900 text-lg leading-tight">{item.title}</h3>
-                                <p className="text-sm text-gray-500 font-medium">{item.organization}</p>
+                                <h3 className="font-bold text-slate-900 text-lg leading-tight">{item.title}</h3>
+                                <p className="text-sm text-blue-600 font-semibold">{item.organization}</p>
                             </div>
                           </div>
 
-                          <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                          <p className={`text-sm text-slate-600 leading-relaxed mb-6 ${isEven ? 'text-left' : 'md:text-right text-left'}`}>
                             {item.description}
                           </p>
 
-                          <div className={`flex flex-wrap gap-2 ${isEven ? 'justify-start' : 'justify-start md:justify-end'}`}>
-                            {item.tags.map((tag, tIndex) => (
-                              <span 
-                                key={tIndex} 
-                                className="px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase rounded-full bg-gray-50 text-gray-600 border border-gray-100"
-                              >
+                          <div className={`flex flex-wrap gap-2 ${isEven ? 'justify-start' : 'md:justify-end justify-start'}`}>
+                            {item.tags.map((tag) => (
+                              <span key={tag} className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-xl bg-slate-900 text-white shadow-sm">
                                 {tag}
                               </span>
                             ))}
@@ -151,20 +138,13 @@ const ExperienceSection = () => {
                      </div>
                   </div>
 
-                  {/* Empty side for layout balance on Desktop */}
+                  {/* Empty side for layout balance */}
                   <div className="hidden md:block w-1/2" />
-                  
                 </motion.div>
               );
             })}
           </div>
         </div>
-        
-        {/* Footer Icon */}
-        <div className="mt-16 flex justify-center">
-            <div className="w-2 h-16 bg-gradient-to-b from-gray-200 to-transparent rounded-full opacity-50"></div>
-        </div>
-
       </div>
     </section>
   );

@@ -59,12 +59,12 @@ export function Navigation() {
                 </a>
               ))}
               <div className="w-[1px] h-6 bg-slate-200 mx-3" />
-              <Button 
-                size="sm" 
-                className="rounded-full bg-slate-900 hover:bg-blue-600 text-white px-6 transition-all shadow-md active:scale-95"
+              <a
+                href="#resume"
+                className="rounded-full bg-slate-900 hover:bg-blue-600 text-white px-6 py-2 transition-all shadow-md active:scale-95 inline-block"
               >
                 Resume
-              </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}

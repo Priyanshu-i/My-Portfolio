@@ -1,96 +1,76 @@
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react"
+"use client";
+
+import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-border bg-secondary/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold font-mono text-primary mb-4">{"<Dev />"}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Building the future, one line of code at a time. Full Stack & AI Developer.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Projects
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#experience"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Experience
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4">Connect</h4>
-              <div className="flex gap-4">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Github size={20} />
-                  <span className="sr-only">GitHub</span>
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Linkedin size={20} />
-                  <span className="sr-only">LinkedIn</span>
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Twitter size={20} />
-                  <span className="sr-only">Twitter</span>
-                </a>
-                <a
-                  href="mailto:your.email@example.com"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Mail size={20} />
-                  <span className="sr-only">Email</span>
-                </a>
-              </div>
-            </div>
+    <footer className="relative mt-20 border-t border-white/20 bg-white/5 backdrop-blur-sm">
+      <div className="container mx-auto px-6 py-12 max-w-6xl">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          
+          {/* Brand/Name Section */}
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <h2 className="text-xl font-bold tracking-tighter text-slate-900 font-mono">
+              Priyanshu Singh
+            </h2>
+            <p className="text-sm text-slate-500 font-medium">
+              Building meaningful AI and full-stack experiences.
+            </p>
           </div>
 
-          <div className="pt-8 border-t border-border">
-            <p className="text-center text-sm text-muted-foreground flex items-center justify-center gap-2">
-              Made with <Heart size={16} className="text-primary fill-primary" /> by Priyanshu Singh ©{" "}
-              {new Date().getFullYear()}
-            </p>
+          {/* Social Links */}
+          <div className="flex items-center gap-4">
+            <SocialIcon href="https://github.com/Priyanshu-i" icon={<Github size={18} />} label="GitHub" />
+            <SocialIcon href="https://www.linkedin.com/in/priyanshusingh121/" icon={<Linkedin size={18} />} label="LinkedIn" />
+            <SocialIcon href="#" icon={<Twitter size={18} />} label="Twitter" />
+            <SocialIcon href="mailto:priyanshu40507@gmail.com" icon={<Mail size={18} />} label="Email" />
+          </div>
+
+          {/* Back to Top */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={scrollToTop}
+            className="group rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50/50 transition-all"
+          >
+            Back to top
+            <ArrowUp size={16} className="ml-2 group-hover:-translate-y-1 transition-transform" />
+          </Button>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-slate-400 font-mono">
+            &copy; {currentYear} &bull; Designed & Built with Next.js
+          </p>
+          <div className="flex gap-6 text-xs text-slate-400 font-medium">
+            <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
+            <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
+            <a href="#experience" className="hover:text-blue-600 transition-colors">Experience</a>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
+}
+
+// Helper Sub-component for Social Icons
+function SocialIcon({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="p-3 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all transform hover:-translate-y-1"
+    >
+      {icon}
+    </a>
+  );
 }

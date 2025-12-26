@@ -162,19 +162,24 @@ const HeroSection = () => {
               variants={itemVariants}
               className="flex flex-wrap justify-center lg:justify-start gap-4 mb-12"
             >
-              <Button
-                size="lg"
-                className="bg-slate-900 hover:bg-slate-800 text-white px-8 h-12 text-base font-medium shadow-lg transition-all duration-300 rounded-xl"
-              >
-                View My Work
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white px-8 h-12 text-base font-medium transition-all duration-300 rounded-xl bg-transparent"
-              >
-                Get In Touch
-              </Button>
+              <a href="#projects">
+                  <Button
+                    size="lg"
+                    className="bg-slate-900 hover:bg-slate-800 text-white px-8 h-12 text-base font-medium shadow-lg transition-all duration-300 rounded-xl"
+                  >
+                    View My Work
+                  </Button>
+                </a>
+
+                <a href="#contact">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white px-8 h-12 text-base font-medium transition-all duration-300 rounded-xl bg-transparent"
+                  >
+                    Get In Touch
+                  </Button>
+                </a>
             </motion.div>
 
             {/* Social Icons */}
@@ -183,9 +188,9 @@ const HeroSection = () => {
               className="flex items-center justify-center lg:justify-start gap-4"
             >
               {[
-                { icon: Github, href: "https://github.com" },
-                { icon: Linkedin, href: "https://linkedin.com" },
-                { icon: Mail, href: "mailto:your@email.com" }
+                { icon: Github, href: "https://github.com/Priyanshu-i" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/priyanshusingh121/" },
+                { icon: Mail, href: "mailto:priyanshu40507@gmail.com" }
               ].map((social, i) => (
                 <a
                   key={i}
