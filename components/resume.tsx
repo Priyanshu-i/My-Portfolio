@@ -10,9 +10,6 @@ export function ResumeViewer() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
 
-  // REPLACE WITH YOUR FILE ID
-//   const driveUrl = "https://drive.google.com/file/d/1TXv4_Lsx-B46MOliHQMUoy03D-a0GM-4/preview";
-//   const downloadUrl = "https://drive.google.com/file/d/1TXv4_Lsx-B46MOliHQMUoy03D-a0GM-4/view?/preview";
   const fileId = "1TXv4_Lsx-B46MOliHQMUoy03D-a0GM-4";
   const drivePreview = `https://drive.google.com/file/d/${fileId}/preview`;
   const driveFull = `https://drive.google.com/file/d/${fileId}/view?usp=sharing`;

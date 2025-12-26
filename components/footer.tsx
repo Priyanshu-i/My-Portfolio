@@ -11,25 +11,26 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-20 border-t border-white/20 bg-white/5 backdrop-blur-sm">
-      <div className="container mx-auto px-6 py-12 max-w-6xl">
+    // Increased mt-20 to mt-32 and added py-20 for more internal space
+    <footer className="relative mt-2 border-t border-white/20 bg-white/5 backdrop-blur-sm">
+      <div className="container mx-auto px-6 py-16 max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           
           {/* Brand/Name Section */}
-          <div className="flex flex-col items-center md:items-start gap-2">
+          <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
             <h2 className="text-xl font-bold tracking-tighter text-slate-900 font-mono">
               Priyanshu Singh
             </h2>
-            <p className="text-sm text-slate-500 font-medium">
+            <p className="text-sm text-slate-500 font-medium max-w-[250px]">
               Building meaningful AI and full-stack experiences.
             </p>
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
+          {/* Social Links - HIDDEN ON MOBILE (hidden), VISIBLE ON TABLET+ (md:flex) */}
+          <div className="hidden md:flex items-center gap-4">
             <SocialIcon href="https://github.com/Priyanshu-i" icon={<Github size={18} />} label="GitHub" />
             <SocialIcon href="https://www.linkedin.com/in/priyanshusingh121/" icon={<Linkedin size={18} />} label="LinkedIn" />
-            <SocialIcon href="#" icon={<Twitter size={18} />} label="Twitter" />
+            <SocialIcon href="https://x.com/priyanshu40507" icon={<Twitter size={18} />} label="Twitter" />
             <SocialIcon href="mailto:priyanshu40507@gmail.com" icon={<Mail size={18} />} label="Email" />
           </div>
 
@@ -45,10 +46,12 @@ export function Footer() {
           </Button>
         </div>
 
+        {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-400 font-mono">
             &copy; {currentYear} &bull; Designed & Built with Next.js
           </p>
+          {/* Keeping links visible but centered on mobile */}
           <div className="flex gap-6 text-xs text-slate-400 font-medium">
             <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
             <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
@@ -60,7 +63,6 @@ export function Footer() {
   );
 }
 
-// Helper Sub-component for Social Icons
 function SocialIcon({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) {
   return (
     <a

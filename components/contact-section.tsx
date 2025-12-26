@@ -6,7 +6,7 @@ import { Mail, Github, Twitter, Linkedin } from 'lucide-react';
 export function ContactSection() {
   
   return (
-    <section id="contact" className="relative w-full py-24 px-4 overflow-hidden bg-transparent">
+    <section id="contact" className="relative w-full py-20 px-4 overflow-hidden bg-transparent">
       
       <div className="max-w-4xl mx-auto">
         {/* Main Card with Glassmorphism */}
@@ -52,7 +52,7 @@ export function ContactSection() {
                   <Github size={22} />
                 </a>
                 <a 
-                  href="#" 
+                  href="https://x.com/priyanshu40507" 
                   className="p-3 text-slate-600 hover:text-blue-400 hover:bg-white/50 rounded-xl transition-all"
                   aria-label="Twitter"
                 >

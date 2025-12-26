@@ -25,6 +25,31 @@ export function Navigation() {
     { label: "Contact", href: "#contact" },
   ];
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault();
+  
+  // 1. Close the menu immediately
+  setIsMobileMenuOpen(false);
+
+  const targetId = href.replace("#", "");
+  const elem = document.getElementById(targetId);
+
+  if (elem) {
+    // 2. Wait a tiny bit for the menu height to settle
+    setTimeout(() => {
+      // 3. Calculate position
+      const headerOffset = 80; // Adjust this number based on your navbar height
+      const elementPosition = elem.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      // 4. Perform the scroll
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }, 100); // 100ms is usually enough for the menu animation to clear
+  }
+};
   return (
     // Changed to sticky so it pushes content down when it expands on mobile
     <nav className="sticky top-0 left-0 right-0 z-[100] transition-all duration-500 pt-4 px-4">
@@ -88,22 +113,24 @@ export function Navigation() {
               >
                 <div className="flex flex-col gap-2 pt-4 pb-6 border-t border-slate-100 mt-2">
                   {navItems.map((item, i) => (
-                    <motion.a
-                      initial={{ x: -10, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                      key={item.label}
-                      href={item.href}
-                      className="px-4 py-3 text-base font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-2xl transition-all"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </motion.a>
-                  ))}
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  // USE THE HANDLER HERE
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className="px-4 py-3 text-base font-medium text-slate-600 hover:text-blue-600 hover:bg-blue-50/50 rounded-2xl transition-all"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
                   <div className="px-4 pt-2">
-                    <Button className="w-full rounded-2xl bg-slate-900 text-white h-12 text-base shadow-lg">
+                    <a
+                      href="#resume"
+                      onClick={(e) => scrollToSection(e, "#resume")}
+                      className="flex items-center justify-center w-full rounded-2xl bg-slate-900 text-white h-12 text-base font-medium shadow-lg active:scale-[0.98] transition-transform"
+                    >
                       Resume
-                    </Button>
+                    </a>
                   </div>
                 </div>
               </motion.div>

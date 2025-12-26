@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact | Priyanshu Singh Portfolio",
     description: "Reach out for collaborations, projects, or discussions about engineering, research, and AI.",
-    url: "https://yourdomain.com/contact",
+    url: "https://priyanshu-singh-dev.com/contact",
     siteName: "Priyanshu Singh Portfolio",
     images: [
       {
-        url: "https://yourdomain.com/MyPic.png",
+        url: "https://priyanshu-singh-dev.com/MyPic.png",
         width: 1200,
         height: 630,
         alt: "Portfolio Contact Preview",
