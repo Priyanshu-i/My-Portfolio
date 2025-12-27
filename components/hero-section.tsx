@@ -45,59 +45,51 @@ const HeroSection = () => {
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-between min-h-screen py-12 lg:py-20 gap-10 lg:gap-20">
           
-          {/* IMAGE CONTAINER - Appears first on mobile (order-first) */}
+          {/* IMAGE CONTAINER */}
           <motion.div
-  variants={imageVariants}
-  initial="hidden"
-  animate="visible"
-  className="flex-1 max-w-[260px] sm:max-w-sm lg:max-w-lg w-full order-first lg:order-last"
->
-  <motion.div
-    animate={{ y: [0, -15, 0] }}
-    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-    className="relative" // Parent wrapper for the image and badge
-  >
-    {/* The Circular Image Wrapper */}
-    <div className="relative z-10 w-full aspect-square rounded-full overflow-hidden bg-gradient-to-br from-slate-200/50 to-slate-100/30 backdrop-blur-sm shadow-2xl border-4 lg:border-8 border-white/50">
-      <img
-        src="MyPic.png"
-        alt="Priyanshu Singh"
-        className="w-full h-full object-cover"
-      />
-    </div>
+            variants={imageVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex-1 max-w-[260px] sm:max-w-sm lg:max-w-lg w-full order-first lg:order-last"
+          >
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative"
+            >
+              {/* The Circular Image Wrapper - Updated Glassmorph */}
+              <div className="relative z-10 w-full aspect-square rounded-full overflow-hidden bg-gradient-to-br from-slate-200/50 to-slate-100/30 dark:from-slate-800/50 dark:to-slate-900/30 backdrop-blur-sm shadow-2xl border-4 lg:border-8 border-white/50 dark:border-slate-700/50 transition-colors">
+                <img
+                  src="MyPic.png"
+                  alt="Priyanshu Singh"
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-    {/* Floating Badge - Now fixed with higher Z-Index and absolute positioning */}
-    <motion.div
-  initial={{ opacity: 0, scale: 0, x: 20 }}
-  animate={{ opacity: 1, scale: 1, x: 0 }}
-  transition={{ delay: 1.2, duration: 0.5 }}
-  className="
-    absolute -bottom-2 -right-4 lg:-bottom-6 lg:-right-8 
-    z-20 bg-white/90 backdrop-blur-md 
-    p-2 lg:p-4 
-    rounded-xl lg:rounded-2xl 
-    shadow-xl border border-white/40 
-    flex items-center gap-1.5 lg:gap-3 
-    min-w-[120px] lg:min-w-[200px]
-  "
->
-  <div className="flex-shrink-0 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-emerald-100 flex items-center justify-center text-base lg:text-2xl shadow-inner">
-    👋
-  </div>
-  <div className="flex flex-col text-left">
-    <p className="text-[10px] lg:text-sm font-bold text-slate-900 leading-tight">
-      Let's collaborate
-    </p>
-    <p className="text-[9px] lg:text-xs text-slate-500 font-medium">
-      on your next project
-    </p>
-  </div>
-</motion.div>
+              {/* Floating Badge - Updated Colors */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+                className="absolute -bottom-2 -right-4 lg:-bottom-6 lg:-right-8 z-20 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-2 lg:p-4 rounded-xl lg:rounded-2xl shadow-xl border border-white/40 dark:border-slate-700/40 flex items-center gap-1.5 lg:gap-3 min-w-[120px] lg:min-w-[200px]"
+              >
+                <div className="flex-shrink-0 w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-base lg:text-2xl shadow-inner">
+                  👋
+                </div>
+                <div className="flex flex-col text-left">
+                  <p className="text-[10px] lg:text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                    Let's collaborate
+                  </p>
+                  <p className="text-[9px] lg:text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    on your next project
+                  </p>
+                </div>
+              </motion.div>
 
-    {/* Subtle Glows behind the image to make it pop against the mesh background */}
-    <div className="absolute inset-0 -z-10 bg-blue-400/20 blur-[60px] rounded-full scale-110" />
-  </motion.div>
-</motion.div>
+              {/* Glowing Background - Blue pops well in both modes */}
+              <div className="absolute inset-0 -z-10 bg-blue-400/20 dark:bg-blue-600/20 blur-[60px] rounded-full scale-110" />
+            </motion.div>
+          </motion.div>
 
           {/* TEXT CONTENT CONTAINER */}
           <motion.div
@@ -109,7 +101,7 @@ const HeroSection = () => {
             <motion.div variants={itemVariants} className="flex justify-center lg:justify-start items-center gap-3 mb-6">
               <Badge
                 variant="secondary"
-                className="px-4 py-1.5 text-sm font-medium bg-slate-900/5 text-slate-900 backdrop-blur-sm border border-slate-900/10"
+                className="px-4 py-1.5 text-sm font-medium bg-slate-900/5 dark:bg-white/5 text-slate-900 dark:text-slate-100 backdrop-blur-sm border border-slate-900/10 dark:border-white/10 transition-colors"
               >
                 <span className="relative flex h-2 w-2 mr-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
@@ -121,13 +113,13 @@ const HeroSection = () => {
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.1]"
+              className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.1]"
             >
               Hi, I'm{' '}
               <span className="relative inline-block">
-                <span className="relative z-10">Priyanshu Singh</span>
+                <span className="relative z-10 text-blue-600 dark:text-blue-400">Priyanshu Singh</span>
                 <motion.span
-                  className="absolute bottom-1 lg:bottom-2 left-0 w-full h-2 lg:h-3 bg-blue-500/20"
+                  className="absolute bottom-1 lg:bottom-2 left-0 w-full h-2 lg:h-3 bg-blue-500/20 dark:bg-blue-400/10"
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
                   transition={{ delay: 1, duration: 0.8, ease: 'easeOut' }}
@@ -137,14 +129,14 @@ const HeroSection = () => {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg sm:text-2xl text-slate-600 mb-4 leading-relaxed font-medium"
+              className="text-lg sm:text-2xl text-slate-600 dark:text-slate-300 mb-4 leading-relaxed font-medium"
             >
               Full-Stack Developer & Creative Problem Solver
             </motion.p>
 
             <motion.p
               variants={itemVariants}
-              className="text-sm sm:text-lg text-slate-500 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
+              className="text-sm sm:text-lg text-slate-500 dark:text-slate-400 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
               I craft exceptional digital experiences that blend beautiful design with powerful functionality. 
               Passionate about building products that make a difference.
@@ -152,7 +144,7 @@ const HeroSection = () => {
 
             <motion.div
               variants={itemVariants}
-              className="flex items-center justify-center lg:justify-start gap-2 mb-10 text-slate-500"
+              className="flex items-center justify-center lg:justify-start gap-2 mb-10 text-slate-500 dark:text-slate-400"
             >
               <MapPin className="w-4 h-4" />
               <span className="text-sm">Based in Haryana, India</span>
@@ -165,7 +157,7 @@ const HeroSection = () => {
               <a href="#projects">
                   <Button
                     size="lg"
-                    className="bg-slate-900 hover:bg-slate-800 text-white px-8 h-12 text-base font-medium shadow-lg transition-all duration-300 rounded-xl"
+                    className="bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-500 text-white px-8 h-12 text-base font-medium shadow-lg transition-all duration-300 rounded-xl"
                   >
                     View My Work
                   </Button>
@@ -175,14 +167,14 @@ const HeroSection = () => {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white px-8 h-12 text-base font-medium transition-all duration-300 rounded-xl bg-transparent"
+                    className="border-2 border-slate-900 dark:border-white text-slate-900 dark:text-white hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900 px-8 h-12 text-base font-medium transition-all duration-300 rounded-xl bg-transparent"
                   >
                     Get In Touch
                   </Button>
                 </a>
             </motion.div>
 
-            {/* Social Icons */}
+            {/* Social Icons - Glassmorphic */}
             <motion.div
               variants={itemVariants}
               className="flex items-center justify-center lg:justify-start gap-4"
@@ -197,7 +189,7 @@ const HeroSection = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl border border-slate-200 bg-white/50 backdrop-blur-sm text-slate-600 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 shadow-sm"
+                  className="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-900/50 transition-all duration-300 shadow-sm"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -216,7 +208,7 @@ const HeroSection = () => {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="flex flex-col items-center gap-2 text-slate-400"
+            className="flex flex-col items-center gap-2 text-slate-400 dark:text-slate-500"
           >
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase">Scroll</span>
             <ArrowDown className="w-4 h-4" />

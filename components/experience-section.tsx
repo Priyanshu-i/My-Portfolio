@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { GraduationCap, Code, Calendar } from 'lucide-react';
-import { Badge } from './ui/badge';
 
 const ExperienceSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,7 +30,7 @@ const ExperienceSection = () => {
       title: 'LearnConnect',
       organization: 'Personal Project',
       period: 'Late 2024',
-      description: 'Full-stack platform built with Next.js. Features multimedia DB and real-time chats, messages with secure groups.',
+      description: 'Full-stack platform built with Next.js. Features multimedia DB and real-time chats with secure group messaging.',
       tags: ['Next.js', 'Node.js', 'Firebase'],
       color: 'bg-purple-500',
     },
@@ -41,34 +40,34 @@ const ExperienceSection = () => {
       title: 'Devripple',
       organization: 'Personal Project | OCD',
       period: 'Summer 2025',
-      description: 'Gained strong community adoption and was later acquired and rebranded by the OpenCodeDeveloper Society, enabling wider open-source usage and impact.',
+      description: 'Gained community adoption; later acquired and rebranded by OpenCodeDeveloper Society for wider open-source impact.',
       tags: ['Next.js', 'Node.js', 'Firebase'],
       color: 'bg-emerald-500',
     },
   ];
 
   return (
-    <section id="experience" className="py-24 bg-transparent overflow-hidden" ref={containerRef}>
+    <section id="experience" className="py-24 bg-transparent overflow-hidden transition-colors duration-500" ref={containerRef}>
       <div className="container mx-auto px-6 max-w-6xl">
         
-        {/* Header - Aligned with the width of the website */}
+        {/* Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-[2px] bg-blue-600" />
-            <span className="text-blue-600 font-mono text-sm font-bold tracking-widest uppercase text-left">My Path</span>
+            <div className="w-8 h-[2px] bg-blue-600 dark:bg-blue-400" />
+            <span className="text-blue-600 dark:text-blue-400 font-mono text-sm font-bold tracking-widest uppercase">My Path</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 text-left">
-            Experience & <span className="text-slate-400 font-normal italic">Education</span>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Experience & <span className="text-slate-400 dark:text-slate-500 font-normal italic">Education</span>
           </h2>
         </div>
 
         {/* Timeline Container */}
         <div className="relative">
           
-          {/* The Central Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-slate-200 -translate-x-1/2" />
+          {/* Central Line - Slightly more visible in dark mode */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-slate-200 dark:bg-slate-800 -translate-x-1/2" />
           
-          {/* The Animated Line */}
+          {/* Animated Gradient Line */}
           <motion.div 
             style={{ height }}
             className="absolute left-4 md:left-1/2 top-0 w-[1px] bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500 -translate-x-1/2 origin-top z-10"
@@ -93,8 +92,8 @@ const ExperienceSection = () => {
                   
                   {/* Timeline Dot */}
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-0 z-20 flex items-center justify-center">
-                    <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-center">
-                      <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
+                    <div className="w-8 h-8 rounded-full bg-white dark:bg-slate-900 backdrop-blur-md border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center">
+                      <div className={`w-2.5 h-2.5 rounded-full ${item.color} shadow-[0_0_8px_rgba(0,0,0,0.2)] dark:shadow-none`} />
                     </div>
                   </div>
 
@@ -102,34 +101,40 @@ const ExperienceSection = () => {
                   <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-12">
                      <div className={`flex flex-col ${isEven ? 'md:items-start' : 'md:items-end'}`}>
                         
-                        <div className="flex items-center gap-2 text-slate-400 font-mono text-xs mb-3 uppercase tracking-wider">
+                        <div className="flex items-center gap-2 text-slate-400 dark:text-slate-500 font-mono text-xs mb-3 uppercase tracking-wider">
                           <Calendar size={14} />
                           {item.period}
                         </div>
 
+                        {/* Glassmorphic Experience Card */}
                         <motion.div 
                           whileHover={{ y: -5 }}
-                          className="w-full max-w-md p-6 rounded-3xl border border-white/40 bg-white/20 backdrop-blur-md shadow-lg group relative overflow-hidden"
+                          className="w-full max-w-md p-6 rounded-3xl border 
+                            border-white/40 dark:border-slate-700/80 
+                            bg-white/20 dark:bg-slate-900/40 
+                            backdrop-blur-md shadow-lg group relative overflow-hidden transition-all duration-300"
                         >
+                          {/* Hover Accent Bar */}
                           <div className={`absolute left-0 top-0 bottom-0 w-1 ${item.color} opacity-0 group-hover:opacity-100 transition-opacity`} />
                           
                           <div className={`flex items-start gap-4 mb-4 ${isEven ? 'flex-row' : 'flex-row md:flex-row-reverse md:text-right'}`}>
-                            <div className="p-3 bg-white/50 rounded-2xl shadow-inner text-slate-700">
+                            <div className="p-3 bg-white/50 dark:bg-slate-800/50 rounded-2xl shadow-inner text-slate-700 dark:text-slate-200 border border-white/20 dark:border-slate-700/50">
                               <Icon size={20} />
                             </div>
                             <div>
-                                <h3 className="font-bold text-slate-900 text-lg leading-tight">{item.title}</h3>
-                                <p className="text-sm text-blue-600 font-semibold">{item.organization}</p>
+                                <h3 className="font-bold text-slate-900 dark:text-white text-lg leading-tight">{item.title}</h3>
+                                <p className="text-sm text-blue-600 dark:text-blue-400 font-semibold">{item.organization}</p>
                             </div>
                           </div>
 
-                          <p className={`text-sm text-slate-600 leading-relaxed mb-6 ${isEven ? 'text-left' : 'md:text-right text-left'}`}>
+                          <p className={`text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 ${isEven ? 'text-left' : 'md:text-right text-left'}`}>
                             {item.description}
                           </p>
 
                           <div className={`flex flex-wrap gap-2 ${isEven ? 'justify-start' : 'md:justify-end justify-start'}`}>
                             {item.tags.map((tag) => (
-                              <span key={tag} className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-xl bg-slate-900 text-white shadow-sm">
+                              <span key={tag} className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-xl 
+                                bg-slate-900 dark:bg-blue-600/20 text-white dark:text-blue-300 shadow-sm">
                                 {tag}
                               </span>
                             ))}

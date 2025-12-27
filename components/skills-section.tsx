@@ -19,21 +19,21 @@ const SKILL_DETAILS = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="py-20 bg-transparent">
+    <section id="skills" className="py-20 bg-transparent transition-colors duration-500">
       <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
         
-        {/* Header - Aligned with the width of the website */}
+        {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-[2px] bg-blue-600" />
-            <span className="text-blue-600 font-mono text-sm font-bold tracking-widest uppercase">Expertise</span>
+            <div className="w-8 h-[2px] bg-blue-600 dark:bg-blue-400" />
+            <span className="text-blue-600 dark:text-blue-400 font-mono text-sm font-bold tracking-widest uppercase">Expertise</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
             Technical Stack
           </h2>
         </div>
 
-        {/* Structured Grid: 2 cols on mobile, 3 on tablet, 4 on desktop */}
+        {/* Structured Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {SKILL_DETAILS.map((skill, index) => (
             <motion.div
@@ -48,12 +48,21 @@ const SkillsSection = () => {
               }}
               className="group relative"
             >
-              {/* The Glow Effect behind the card */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-300" />
+              {/* The Glow Effect - Increased visibility for dark mode */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl opacity-0 group-hover:opacity-20 dark:group-hover:opacity-30 blur transition duration-300" />
               
-              {/* Main Card */}
-              <div className="relative flex items-center gap-4 px-5 py-4 rounded-2xl border border-white/40 bg-white/40 backdrop-blur-md shadow-sm group-hover:bg-white/60 transition-all">
-                <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center p-2 bg-white/50 rounded-xl shadow-inner">
+              {/* Main Card - Enhanced Borders and Glassmorph */}
+              <div className="relative flex items-center gap-4 px-5 py-4 rounded-2xl 
+                /* Light Mode */
+                border-white/40 bg-white/40 shadow-sm hover:bg-white/60
+                /* Dark Mode */
+                dark:border-slate-700/80 dark:bg-slate-900/40 dark:shadow-xl dark:shadow-black/20 dark:hover:bg-slate-800/60
+                backdrop-blur-md border transition-all duration-300"
+              >
+                {/* Logo Wrapper */}
+                <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center p-2 
+                  bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-inner border border-white/20 dark:border-slate-700/50"
+                >
                   <img
                     src={skill.logoSrc}
                     alt={skill.name}
@@ -64,18 +73,17 @@ const SkillsSection = () => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm md:text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                  <span className="text-sm md:text-base font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {skill.name}
                   </span>
-                  
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom Decorative Line to keep the "Website Width" feel */}
-        <div className="mt-20 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+        {/* Decorative Line */}
+        <div className="mt-20 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent" />
       </div>
     </section>
   );
