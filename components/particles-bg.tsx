@@ -19,45 +19,45 @@ export default function ParticlesBg() {
 
   return (
     <Particles
-      id="tsparticles"
-      options={{
-        fpsLimit: 60,
-        interactivity: {
-          events: {
-            onHover: { enable: true, mode: "grab" },
-          },
-          modes: {
-            grab: { distance: 150, links: { opacity: 0.5 } },
-          },
-        },
-        particles: {
-          color: { value: "#3b82f6" }, // Subtle slate color
-          links: {
-            color: "#60a5fa",
-            distance: 150,
-            enable: true,
-            opacity: 0.15,
-            width: 1,
-          },
-          move: {
-            enable: true,
-            speed: 0.6, // Very slow and calming
-            direction: "none",
-            random: true,
-            straight: false,
-            outModes: { default: "out" },
-          },
-          number: {
-            value: 60, // Light density
-            density: { enable: true, area: 800 },
-          },
-          opacity: { value: 0.3 },
-          shape: { type: "circle" },
-          size: { value: { min: 1, max: 3 } },
-        },
-        detectRetina: true,
-      }}
-      className="absolute inset-0 -z-10"
-    />
+  id="tsparticles"
+  options={{
+    fpsLimit: 60,
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "grab" },
+      },
+      modes: {
+        grab: { distance: 150, links: { opacity: 0.5 } },
+      },
+    },
+    particles: {
+      color: { value: "#87CEEB" }, // Sky blue
+      links: {
+        color: "#87CEEB", // Sky blue for links too
+        distance: 150,
+        enable: true,
+        opacity: 0.7, // Increased from 0.15 for better visibility
+        width: 1,
+      },
+      move: {
+        enable: true,
+        speed: 0.7,
+        direction: "none",
+        random: true,
+        straight: false,
+        outModes: { default: "out" },
+      },
+      number: {
+        value: 80,
+        density: { enable: true, area: 800 },
+      },
+      opacity: { value: 0.8 }, // Increased from 0.3 for better visibility
+      shape: { type: "circle" },
+      size: { value: { min: 1, max: 3 } },
+    },
+    detectRetina: true,
+  }}
+  className="absolute inset-0 -z-10"
+/>
   );
 }
